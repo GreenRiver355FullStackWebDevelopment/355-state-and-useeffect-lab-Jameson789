@@ -19,7 +19,7 @@ function App() {
       console.log(error);
     }
   }
-  console.log(pokemon);
+  //console.log(pokemon);
 
   const handleNext = () => {
     if(page[0] > 100000){
