@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 
 import Cards from "./components/Cards";
 function App() {
-  const [pokemon, setPokemon] = useState([]);
+  const [pokemon, setPokemon] = useState({results:[]});
   const [page, setPage] = useState([0]);
 
   useEffect(() => {
@@ -20,14 +20,33 @@ function App() {
     }
   }
   console.log(pokemon);
+
+  const handleNext = () => {
+    if(page[0] > 100000){
+      setPage([0]);
+    }else{
+      setPage(prev => [prev[0] + 20]);
+    }
+  };
+
+  const handleBack = () => {
+    if(page[0] > 0){
+      setPage(prev => [prev[0] - 20]);
+    }
+  }
+
   return (
     <>
       <div className="App">
       <h1>Pokemon List</h1>
       <div className="main-container ">
         <div>
-          {pokemon && <Cards pokemon={pokemon} />}
+          <Cards pokemon={pokemon.results} />
         </div>
+        <div>
+            <button onClick={handleBack} disabled={page === 1}>Back</button>
+            <button onClick={handleNext}>Next</button>
+          </div>
       </div>
     </div>
     </>
