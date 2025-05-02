@@ -10,16 +10,22 @@ const Cards = ({ pokemon }) => {
     }
     //console.log(singlePokemon);
     return (
-        <div className="cards">
+        <>
+          <div className="card-container">
             {pokemon.map((p, index) => (
-                <div key={index} className="card" onClick={() => onPokemonClick(p.url)}>
+              <div key={index} className="card" onClick={() => onPokemonClick(p.url)}>
                 {p.name.charAt(0).toUpperCase() + p.name.slice(1)}
-                </div>
+              </div>
             ))}
-
-            {singlePokemon && <CardDetail singlePokemon={singlePokemon}></CardDetail>}
-        </div>
-    )
+          </div>
+      
+          {singlePokemon && (
+            <div className="card-detail-wrapper">
+              <CardDetail singlePokemon={singlePokemon} />
+            </div>
+          )}
+        </>
+      );
 }
 
 export default Cards;
